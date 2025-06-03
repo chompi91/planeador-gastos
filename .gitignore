@@ -1,0 +1,14 @@
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Archivos temporales
+*.tmp
+*.bak
+
+# Carpeta de node_modules (si se agrega en el futuro)
+node_modules/
+
+# Archivos de configuración local
+.env
+.env.local
