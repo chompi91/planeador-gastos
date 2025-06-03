@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generador Automático de Iconos</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h2>Generador de Iconos para el Planeador de Gastos</h2>
+    <p>Los iconos se descargarán automáticamente...</p>
+    
+    <canvas id="canvas192" width="192" height="192" style="border: 1px solid #ccc;"></canvas>
+    <canvas id="canvas512" width="512" height="512" style="border: 1px solid #ccc; width: 192px; height: 192px;"></canvas>
+    
+    <script>
+        function createAndDownloadIcon(size) {
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+            
+            // Fondo verde
+            ctx.fillStyle = '#4CAF50';
+            ctx.fillRect(0, 0, size, size);
+            
+            // Círculo blanco
+            ctx.fillStyle = 'white';
+            ctx.beginPath();
+            ctx.arc(size/2, size/2, size*0.33, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Símbolo de dinero
+            ctx.fillStyle = '#4CAF50';
+            ctx.font = `bold ${size*0.4}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('$', size/2, size/2);
+            
+            // Mostrar en la página
+            const displayCanvas = document.getElementById(`canvas${size}`);
+            const displayCtx = displayCanvas.getContext('2d');
+            displayCtx.drawImage(canvas, 0, 0);
+            
+            // Descargar automáticamente
+            canvas.toBlob(function(blob) {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `icon-${size}.png`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            });
+        }
+        
+        // Crear y descargar ambos iconos
+        setTimeout(() => createAndDownloadIcon(192), 500);
+        setTimeout(() => createAndDownloadIcon(512), 1500);
+        
+        setTimeout(() => {
+            document.body.innerHTML += '<h3>✅ Iconos descargados! Muévelos a C:\\Claude\\planeador-gastos</h3>';
+        }, 3000);
+    </script>
+</body>
+</html>
