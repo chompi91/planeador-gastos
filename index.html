@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Planeador de Gastos</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4CAF50">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>💰 Mi Planeador de Gastos</h1>
+            <div class="balance-container">
+                <h2>Balance Total</h2>
+                <p class="balance" id="balance">$0.00</p>
+            </div>
+        </header>
+
+        <main>
+            <div class="stats-container">
+                <div class="stat-card income">
+                    <h3>Ingresos</h3>
+                    <p id="total-income">$0.00</p>
+                </div>
+                <div class="stat-card expense">
+                    <h3>Gastos</h3>
+                    <p id="total-expense">$0.00</p>
+                </div>
+            </div>
+
+            <div class="add-transaction">
+                <h3>Agregar Transacción</h3>
+                <form id="transaction-form">
+                    <input type="text" id="description" placeholder="Descripción" required>
+                    <input type="number" id="amount" placeholder="Monto" step="0.01" required>
+                    <select id="category" required>
+                        <option value="">Selecciona categoría</option>
+                        <option value="ingreso">💵 Ingreso</option>
+                        <option value="comida">🍔 Comida</option>
+                        <option value="transporte">🚗 Transporte</option>
+                        <option value="hogar">🏠 Hogar</option>
+                        <option value="entretenimiento">🎮 Entretenimiento</option>
+                        <option value="salud">🏥 Salud</option>
+                        <option value="educacion">📚 Educación</option>
+                        <option value="otros">📦 Otros</option>
+                    </select>
+                    <input type="date" id="date" required>
+                    <button type="submit">Agregar</button>
+                </form>
+            </div>
+
+            <div class="filter-section">
+                <h3>Historial de Transacciones</h3>
+                <div class="filters">
+                    <select id="filter-category">
+                        <option value="all">Todas las categorías</option>
+                        <option value="ingreso">💵 Ingreso</option>
+                        <option value="comida">🍔 Comida</option>
+                        <option value="transporte">🚗 Transporte</option>
+                        <option value="hogar">🏠 Hogar</option>
+                        <option value="entretenimiento">🎮 Entretenimiento</option>
+                        <option value="salud">🏥 Salud</option>
+                        <option value="educacion">📚 Educación</option>
+                        <option value="otros">📦 Otros</option>
+                    </select>
+                    <button id="export-btn">📥 Exportar</button>
+                </div>
+            </div>
+
+            <div class="transactions-list" id="transactions-list">
+                <!-- Las transacciones se agregarán aquí dinámicamente -->
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
